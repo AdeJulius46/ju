@@ -9,11 +9,20 @@ export default function Meme() {
         bottomText: "",
         randomImage: "http://i.imgflip.com/1bij.jpg" 
     })
-    const [allMemeImages, setAllMemeImages] = React.useState(memesData)
+    const [allMeme, setAllMemeImages] = React.useState(memesData)
     
+
+    React.useEffect(()=>{
+        
+        fetch('http://example.com/movies.json')
+        .then((response) => response.json())
+        .then((data) => console.log(data));
+
+
+    },[meme])
     
     function getMemeImage() {
-        const memesArray = allMemeImages.data.memes
+        const memesArray = allMeme.data.memes
         const randomNumber = Math.floor(Math.random() * memesArray.length)
         const url = memesArray[randomNumber].url
         setMeme(prevMeme => ({
